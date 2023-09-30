@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/Pages/mainBody.dart';
+import 'package:weather_app/Pages/searchBody.dart';
 
 class mainPage extends StatelessWidget {
   const mainPage({super.key});
@@ -9,9 +10,11 @@ class mainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Weather"),
-        actions: <Widget>[
+        actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, searchBody.id);
+            },
             icon: Icon(Icons.search),
             color: Colors.white,
           )
