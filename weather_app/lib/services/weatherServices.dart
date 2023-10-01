@@ -14,8 +14,12 @@ class wethaerService {
           await dio.get("$baseUlr/forecast.json?key=$apiKey&q=$city&days=1");
       weatherModel weatherStatus = weatherModel.fromJson(response.data);
       return weatherStatus;
-    } on Exception {
-      return null;
+    } on DioException catch (e) {
+      final String errorMessage =
+          e.response?.data["error"]["message"] ?? "Oops there was an error";
+      throw Exception(errorMessage);
+    } catch (e) {
+      throw Exception("Oops there was an error, try later");
     }
   }
 }
